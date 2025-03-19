@@ -1,6 +1,7 @@
 import { createAdminClient } from "@/appwrite/config";
 import { createNewPerktifyUser } from "@/lib/actions";
-import { stripe } from "@/lib/stripe";
+import stripe from "@/lib/stripe";
+
 import { headers } from "next/headers";
 
 
