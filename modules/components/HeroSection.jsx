@@ -89,7 +89,7 @@ const HeroSection = ({ heroData }) => {
             </div> */}
             </div>
           </div>
-          <div className="col-xl-10 col-lg-10 mt-1 d-none d-sm-block position-relative ">
+          <div className="col-xl-9 col-lg-9 mt-1 d-none d-sm-block position-relative ">
             <div
               className="position-relative"
               data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 1200, "delay": 200 }'

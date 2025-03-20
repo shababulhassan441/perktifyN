@@ -24,9 +24,9 @@ const PurchaseSuccessPage = async ({ params }) => {
                 Whoops
               </p>
               <div className="mt-4">
-                <Link href="/" className="btn text-white bg-primary px-4 py-2" style={{backgroundImage:"linear-gradient(to right, #3543f4 , #b627fe)"}}>
+                <a href="/" className="btn text-white bg-primary px-4 py-2" style={{backgroundImage:"linear-gradient(to right, #3543f4 , #b627fe)"}}>
                   Go to Dashboard
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -46,9 +46,9 @@ const PurchaseSuccessPage = async ({ params }) => {
                 processed.
               </p>
               <div className="mt-4">
-                <Link href="/" className="btn text-white bg-primary px-4 py-2" style={{backgroundImage:"linear-gradient(to right, #3543f4 , #b627fe)"}}>
+                <a href="/" className="btn text-white bg-primary px-4 py-2" style={{backgroundImage:"linear-gradient(to right, #3543f4 , #b627fe)"}}>
                   Go to Dashboard
-                </Link>
+                </a>
               </div>
             </div>
           </div>

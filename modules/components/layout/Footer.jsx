@@ -17,10 +17,8 @@ const Footer = ({ footerData }) => {
     <>
       {/* start footer */}
       <footer
-        className="footer-dark bg-dark-blue pb-0 cover-background background-position-left-top"
-        style={{
-          backgroundImage: 'url("demo-hosting-footer-bg.jpg")',
-        }}
+        style={{ backgroundImage: "url('/demo-hosting-footer-bg.jpg')" }}
+        className="footer-dark bg-dark-blue pb-0 cover-background background-position-left-top "
       >
         <div className="container">
           <div className="row justify-content-center mb-5 md-mb-8 sm-mb-40px">
