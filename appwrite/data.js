@@ -19,6 +19,7 @@ export async function fetchData() {
       blogCards,
       recentBlogs,
       faqAccordians,
+      pricingCards,
     ] = await Promise.all([
       databases.listDocuments(
         process.env.NEXT_PUBLIC_DATABASE_ID,
@@ -82,6 +83,10 @@ export async function fetchData() {
           Query.orderDesc("$createdAt"), // Sort by creation date (descending)
         ]
       ),
+      databases.listDocuments(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_PRICING_CARDS,
+      ),
     ]);
 
     const HeroContent = hero.documents[0] || {};
@@ -96,6 +101,7 @@ export async function fetchData() {
     const blogCardsData = blogCards.documents || {};
     const RecentBlogs = recentBlogs.documents || [];
     const faqData = faqAccordians.documents || [];
+    const PricingCards = pricingCards.documents || [];
     return {
       HeroContent,
       IntroductionData,
@@ -109,6 +115,7 @@ export async function fetchData() {
       blogCardsData,
       RecentBlogs,
       faqData,
+      PricingCards
     };
   } catch (error) {
     console.error("fetchCardData:", error);

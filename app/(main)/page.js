@@ -16,6 +16,7 @@ import WhyChooseHead from "@/modules/components/WhyChooseHead";
 import WhyChooseus from "@/modules/components/WhyChooseus";
 import { cookies } from "next/headers";
 import BuySubscription from "@/modules/components/BuySubscription";
+import PricingPlans from "@/modules/components/PricingPlans";
 
 
 export default async function Home({ searchParams }) {
@@ -43,23 +44,9 @@ export default async function Home({ searchParams }) {
       {/* <LetsGo heroCta={data.HeroContent} /> */}
       {/* <Pricing /> */}
       <Introdcution introData={data.IntroductionData} />
-      {/* <section>
-        <form className="zindex" action={sendMail}>
-          <button
-            type="submit"
-            className="btn btn-gradient-fast-blue-purple btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none"
-          >
-            <span>
-              <span></span>
-              <span className="btn-double-text" data-text=" Get Perktify">
-                Get Perktify
-              </span>
-            </span>
-          </button>
-        </form>
-      </section> */}
-      {/* <Subscription /> */}
-      <BuySubscription />
+      {/* <BuySubscription /> */}
+      <PricingPlans pricingCards={data.PricingCards} />
+      {/* {console.log("pricing  cards=>",data.PricingCards)} */}
       {/* <VideoSection /> */}
       <WhyChooseHead WhyHead={data.WhyHead} />
       {/* <WhyChooseus whyCards={data.whyCards} /> */}

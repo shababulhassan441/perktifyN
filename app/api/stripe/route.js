@@ -31,9 +31,10 @@ export async function POST(req) {
       const CustomerName = session.metadata?.CustomerName;
       const CustomerEmail = session.metadata?.CustomerEmail;
       const CustomerCompanyName = session.metadata?.CustomerCompanyName;
+      const CustomerPackagePrice = session.metadata?.ProductPrice;
 
       const { databases } = await createAdminClient();
-
+      console.log(parseInt(CustomerPackagePrice))
       if (CustomerID) {
         console.log(`Generating Customer... `);
         await databases.createDocument(
@@ -45,7 +46,7 @@ export async function POST(req) {
             email: CustomerEmail,
             company: CustomerCompanyName,
             paymentStatus: session.payment_status === "paid",
-            Amount: parseInt("10000"),
+            Amount: parseInt(CustomerPackagePrice),
           }
         );
 
