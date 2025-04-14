@@ -1,8 +1,11 @@
-import { createAdminClient } from "@/appwrite/config";
+import {
+  createAdminClient,
+  createLoyalityRewardClient,
+} from "@/appwrite/config";
 import { createNewPerktifyUser } from "@/lib/actions";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
-
+import { ID } from "node-appwrite";
 
 export async function POST(req) {
   const body = await req.text();
@@ -33,13 +36,53 @@ export async function POST(req) {
       const CustomerCompanyName = session.metadata?.CustomerCompanyName;
       const CustomerPackagePrice = session.metadata?.ProductPrice;
 
-      const { databases } = await createAdminClient();
-      console.log(parseInt(CustomerPackagePrice))
+      const dbId = CustomerID;
+      const campaigns = ID.unique();
+      const leads = ID.unique();
+      const queries = ID.unique();
+      const rewards = ID.unique();
+      const tiers = ID.unique();
+      const transactions = ID.unique();
+      const userPoints = ID.unique();
+      const users = ID.unique();
+
+      const { databases } = await createLoyalityRewardClient();
+      console.log("Databases initialized:");
       if (CustomerID) {
-        console.log(`Generating Customer... `);
+    
+          // Step : Create Auth User in Appwrite after payment
+          console.log(`Creating Appwrite user for ${CustomerEmail}...`);
+          const formData = new FormData();
+          formData.append("userId", CustomerID);
+          formData.append("name", CustomerName);
+          formData.append("email", CustomerEmail);
+          formData.append("company", CustomerCompanyName);
+          formData.append("dbId", dbId);
+          formData.append("campaigns", campaigns);
+          formData.append("leads", leads);
+          formData.append("queries", queries);
+          formData.append("rewards", rewards);
+          formData.append("tiers", tiers);
+          formData.append("transactions", transactions);
+          formData.append("userPoints", userPoints);
+          formData.append("Users", users);
+  
+          const userResponse = await createNewPerktifyUser(formData);
+  
+          if (userResponse.type === "success") {
+            console.log(`User ${CustomerName} created successfully in Appwrite.`);
+          } else {
+            console.error(
+              "Failed to create Appwrite user:",
+              userResponse.message
+            );
+          }
+
+        //create data for subscriber
+        console.log(`Generating Subscribers... `);
         await databases.createDocument(
-          process.env.NEXT_PUBLIC_DATABASE_ID,
-          process.env.NEXT_PUBLIC_PERKTIFY_COLLECTION_ID_CUSTOMERS,
+          process.env.NEXT_PUBLIC_LOYALITY_REWARD_SUBSCRIPTIONS_DATABASE_ID,
+          process.env.NEXT_PUBLIC_LOYALITY_REWARD_SUBSCRIBERS_COLLECTION_ID,
           CustomerID,
           {
             name: CustomerName,
@@ -47,23 +90,18 @@ export async function POST(req) {
             company: CustomerCompanyName,
             paymentStatus: session.payment_status === "paid",
             Amount: parseInt(CustomerPackagePrice),
+            db_id: dbId,
+            campaigns: campaigns,
+            leads: leads,
+            queries: queries,
+            rewards: rewards,
+            tiers: tiers,
+            transactions: transactions,
+            userPoints: userPoints,
+            Users: users,
           }
         );
-
-        // Step 2: Create Auth User in Appwrite after payment
-        console.log(`Creating Appwrite user for ${CustomerEmail}...`);
-        const formData = new FormData();
-        formData.append("userId", CustomerID);
-        formData.append("name", CustomerName);
-        formData.append("email", CustomerEmail);
-
-        const userResponse = await createNewPerktifyUser(formData);
-
-        if (userResponse.type === "success") {
-          console.log(`User ${CustomerName} created successfully in Appwrite.`);
-        } else {
-          console.error("Failed to create Appwrite user:", userResponse.message);
-        }
+        console.log(`Subscribers genrated ... `);
 
       } else {
         console.log("CustomerID missing ");

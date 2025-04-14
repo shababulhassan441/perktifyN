@@ -23,4 +23,28 @@ const createAdminClient = async () => {
   };
 };
 
-export { createAdminClient };
+const createLoyalityRewardClient = async () => {
+  const client = new Client()
+    .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT)
+    .setProject(process.env.NEXT_PUBLIC_LOYALITY_REWARD_PROJECT_ID)
+    .setKey(process.env.NEXT_PUBLIC_LOYALITY_REWARD_API_KEY);
+
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get users() {
+      return new Users(client);
+    },
+
+    get databases() {
+      return new Databases(client);
+    },
+    get storage() {
+      return new Storage(client);
+    },
+  };
+};
+
+export { createAdminClient,createLoyalityRewardClient };
+

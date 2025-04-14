@@ -1,6 +1,5 @@
-import { createAdminClient } from "@/appwrite/config";
+import { createAdminClient, createLoyalityRewardClient } from "@/appwrite/config";
 import { ID, Query } from "node-appwrite";
-
 
 export async function fetchData() {
   try {
@@ -85,7 +84,7 @@ export async function fetchData() {
       ),
       databases.listDocuments(
         process.env.NEXT_PUBLIC_DATABASE_ID,
-        process.env.NEXT_PUBLIC_COLLECTION_ID_PRICING_CARDS,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_PRICING_CARDS
       ),
     ]);
 
@@ -115,7 +114,7 @@ export async function fetchData() {
       blogCardsData,
       RecentBlogs,
       faqData,
-      PricingCards
+      PricingCards,
     };
   } catch (error) {
     console.error("fetchCardData:", error);
@@ -170,14 +169,13 @@ export async function welcomeEmailTemplate() {
   }
 }
 
-
 export async function fetchCustomer(customerID) {
   try {
-    const { databases } = await createAdminClient();
+    const { databases } = await createLoyalityRewardClient();
 
     const response = await databases.getDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID,
-      process.env.NEXT_PUBLIC_PERKTIFY_COLLECTION_ID_CUSTOMERS,
+      process.env.NEXT_PUBLIC_LOYALITY_REWARD_SUBSCRIPTIONS_DATABASE_ID,
+      process.env.NEXT_PUBLIC_LOYALITY_REWARD_SUBSCRIBERS_COLLECTION_ID,
       customerID
     );
     return response;
