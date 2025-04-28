@@ -8,6 +8,11 @@ const nextConfig = {
       },
     ],
   },
+  experimental:{
+    serverActions:{
+        allowedOrigins:["perktify.com"]
+        }
+    }
 };
 
 export default nextConfig;

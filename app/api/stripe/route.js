@@ -50,8 +50,7 @@ export async function POST(req) {
       console.log("Databases initialized:");
       if (CustomerID) {
     
-          // Step : Create Auth User in Appwrite after payment
-          console.log(`Creating Appwrite user for ${CustomerEmail}...`);
+       
           const formData = new FormData();
           formData.append("userId", CustomerID);
           formData.append("name", CustomerName);
@@ -67,6 +66,8 @@ export async function POST(req) {
           formData.append("userPoints", userPoints);
           formData.append("Users", users);
   
+             // Step : Create Auth User in Appwrite after payment
+             console.log(`Creating Appwrite user for ${CustomerEmail}...`);
           const userResponse = await createNewPerktifyUser(formData);
   
           if (userResponse.type === "success") {

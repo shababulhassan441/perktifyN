@@ -52,7 +52,7 @@ const HeroSection = ({ heroData }) => {
             </div>
             <div className="overflow-hidden  d-flex justify-content-center  gap-3 pt-5px">
               <a
-                href="https://storekwil-dashboard.netlify.app/login?demo=true"
+                href="https://app.perktify.com/login?demo=true"
                 className="btn btn-gradient-fast-blue-purple btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none"
               >
                 <span>
