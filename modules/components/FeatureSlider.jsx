@@ -56,7 +56,7 @@ const FeatureSlider = ({ cardData }) => {
                     borderRadius: "15px",
                     overflow: "hidden",
                     transition: "transform 0.3s ease",
-                    backgroundImage: `linear-gradient(135deg, #df5e93, #62278d, #000f4c)`,
+                    // backgroundImage: `linear-gradient(135deg, #df5e93, #62278d, #000f4c)`,
                   }}
                 >
                   {/* Icon & Text */}
@@ -74,10 +74,10 @@ const FeatureSlider = ({ cardData }) => {
                         borderRadius: "15px",
                       }}
                     />
-                    <h5 className="fs-4 text-center mb-1 text-white feature-title">
+                    <h5 className="fs-4 text-center mb-1 text-white textColor feature-title">
                       {card.title}
                     </h5>
-                    <p className="card-text text-center text-white mb-0">
+                    <p className="card-text text-center text-white textColor mb-0">
                       {card.description}
                     </p>
                   </div>

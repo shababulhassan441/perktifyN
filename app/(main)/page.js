@@ -56,7 +56,7 @@ export default async function Home({ searchParams }) {
         cardData={data.keyfeaturesCardsData}
       />
 
-      {/* <LatestBlogs BlogCards={data.RecentBlogs} /> */}
+      <LatestBlogs BlogCards={data.RecentBlogs} />
       <FaqAccordians faqData={data.faqData} />
       {/* <WaitList waitList={data.WaitListData} referCode={referCode} /> */}
       <StickyElements linksUrl={data.stickyLinksUrl} />

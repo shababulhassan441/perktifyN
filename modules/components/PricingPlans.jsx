@@ -33,15 +33,17 @@ const PricingPlans = ({ pricingCards }) => {
       id="buysubscription"
       className="pt-5"
       style={{
-        backgroundColor: "#191e3d",
+        // backgroundColor: bodyColor,
+        backgroundImage: `linear-gradient(0deg, #e6ceff, #ab46e6)`,
+
       }}
     >
       <div className="container">
         <div className="col-12 col-xl-8 text-center z-index-1 mx-auto">
-          <span className="text-white fs-20 mb-15px d-inline-block">
+          <span className="text-white  fw-600 fs-20 mb-15px d-inline-block">
             Purchase Lifetime Deal With One Payment
           </span>
-          <h2 className="text-white mx-auto mb-50px ls-minus-1px fw-500 text-shadow-double-large">
+          <h2 className="text-white  mx-auto mb-50px ls-minus-1px fw-700 ">
             Grab Our Limited-Time Lifetime Deal
           </h2>
           {/* start contact popup */}
@@ -65,7 +67,7 @@ const PricingPlans = ({ pricingCards }) => {
                     {item.title}
                   </div>
                   <span className="fs-6 text-muted d-block mt-2 mb-6 text-capitalize">
-                   {item.duration} billing
+                    {item.duration} billing
                   </span>
                   <h2 className="text-dark fw-bold">
                     <sup className="fs-4">$</sup>

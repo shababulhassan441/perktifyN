@@ -8,7 +8,7 @@ const HeroSection = ({ heroData }) => {
   return (
     <section
       id="herocta"
-      className="cover-background full-screen bg-dark-gray ipad-top-space-margin position-relative section-dark md-h-auto"
+      className="cover-background full-screen ipad-top-space-margin position-relative md-h-auto"
       //   style={{ backgroundImage: 'url("hero-bg.jpg")' }}
     >
       <div className="overlay"></div>
@@ -21,7 +21,7 @@ const HeroSection = ({ heroData }) => {
       <div className="mx-w-large mx-auto h-100 paddingH">
         <div className="d-flex flex-column gap-4 marginTopSmall sm-marginTop align-items-center justify-content-center pt-9 h-100">
           <div className="col-xl-10 col-lg-10 col-md-10 text-white position-relative text-center text-lg-start d-flex flex-column align-items-center">
-            <div className="fs-80 lg-fs-60 sm-fs-60 xs-fs-50 fw-600 mb-20px text-center ls-minus-4px overflow-hidden">
+            <div className="fs-70 lg-fs-60 sm-fs-60 xs-fs-50 fw-600 mb-20px text-center ls-minus-4px overflow-hidden">
               <div
                 className="d-inline-block"
                 data-anime='{ "translateY": [100, 0], "easing": "easeOutCubic", "duration": 900 }'
@@ -30,11 +30,12 @@ const HeroSection = ({ heroData }) => {
                   className="highlight-separator"
                   data-shadow-animation="true"
                   data-animation-delay={1500}
+                  // style={{color:"black"}}
                 >
                   {title || ""}
-                  <span>
+                  {/* <span>
                     <img src="highlight-separator.svg" alt="" />
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
@@ -53,7 +54,11 @@ const HeroSection = ({ heroData }) => {
             <div className="overflow-hidden  d-flex justify-content-center  gap-3 pt-5px">
               <a
                 href="https://app.perktify.com/login?demo=true"
-                className="btn btn-gradient-fast-blue-purple btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none"
+                className="btn btn-switch-text bg-white fw-600 text-black btn-large left-icon btn-round-edge submit text-transform-none"
+                // style={{
+                //   backgroundImage:
+                //     "linear-gradient(to right, #3543f4 , #b627fe)",
+                // }}
               >
                 <span>
                   <span>{/* <i className="bi bi-calendar-check"></i> */}</span>
@@ -68,7 +73,7 @@ const HeroSection = ({ heroData }) => {
                     .getElementById("buysubscription")
                     .scrollIntoView({ behavior: "smooth" });
                 }}
-                className="btn btn-gradient-fast-blue-purple btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none"
+                className="btn bg-white fw-600 text-black  btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none"
               >
                 <span>
                   <span>{/* <i className="bi bi-calendar-check"></i> */}</span>
@@ -89,7 +94,7 @@ const HeroSection = ({ heroData }) => {
             </div> */}
             </div>
           </div>
-          <div className="col-xl-9 col-lg-9 pb-3 mt-1 d-none d-sm-block position-relative ">
+          <div className="col-xl-7 col-lg-7 pb-3 mt-1 d-none d-sm-block position-relative ">
             <div
               className="position-relative"
               data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 1200, "delay": 200 }'

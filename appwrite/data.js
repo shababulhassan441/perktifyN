@@ -19,6 +19,7 @@ export async function fetchData() {
       recentBlogs,
       faqAccordians,
       pricingCards,
+      Legals,
     ] = await Promise.all([
       databases.listDocuments(
         process.env.NEXT_PUBLIC_DATABASE_ID,
@@ -72,19 +73,23 @@ export async function fetchData() {
         process.env.NEXT_PUBLIC_COLLECTION_ID_BLOGCARDS,
         [
           Query.orderDesc("$createdAt"), // Sort by creation date (descending)
-          Query.limit(2), // Limit to 2 results
+          Query.limit(5), // Limit to 2 results
         ]
       ),
       databases.listDocuments(
         process.env.NEXT_PUBLIC_DATABASE_ID,
         process.env.NEXT_PUBLIC_COLLECTION_ID_FAQ,
         [
-          Query.orderDesc("$createdAt"), // Sort by creation date (descending)
+          Query.orderAsc("$createdAt"), // Sort by creation date (descending)
         ]
       ),
       databases.listDocuments(
         process.env.NEXT_PUBLIC_DATABASE_ID,
         process.env.NEXT_PUBLIC_COLLECTION_ID_PRICING_CARDS
+      ),
+      databases.listDocuments(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_LEGALS
       ),
     ]);
 
@@ -101,6 +106,7 @@ export async function fetchData() {
     const RecentBlogs = recentBlogs.documents || [];
     const faqData = faqAccordians.documents || [];
     const PricingCards = pricingCards.documents || [];
+    const LegalsData = Legals.documents || [];
     return {
       HeroContent,
       IntroductionData,
@@ -115,9 +121,10 @@ export async function fetchData() {
       RecentBlogs,
       faqData,
       PricingCards,
+      LegalsData,
     };
   } catch (error) {
-    console.error("fetchCardData:", error);
+    console.error("error in fetching data from appwrite:", error);
   }
 }
 

@@ -11,6 +11,10 @@ const page = async ({ params }) => {
 
   // Find the specific blog post by its ID
   const blogPost = blogPosts.find((blog) => blog.$id === id);
+  // console.log("blogpost", blogPost);
+
+  //find the recent Blogs excepts the selected one
+  const RecentBlogs = blogPosts.filter((blog) => blog.$id !== id);
 
   // Handle case when no blog post is found
   if (!blogPost) {
@@ -22,47 +26,51 @@ const page = async ({ params }) => {
   }
 
   return (
-    <>
-      <section className="container my-5 ">
-        <div className="row justify-content-center blogcontainer-mt">
-          <div className="col-md-8">
+    <section className="bg-solitude-blue d-flex flex-column blogDetailPagePaddingTop">
+      <div className="container my-3  ">
+        <div
+          className="row justify-content-center bg-white shadow-sm mx-auto rounded-3"
+          style={{ maxWidth: "800px" }}
+        >
+          <div className="p-0">
             {/* Blog Thumbnail */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <img
-                src={blogPost.thumbnail}
+                src={blogPost.thumbnail || "/placeholder-image.webp"}
                 alt={blogPost.title}
                 className="img-fluid rounded-3"
-                style={{ objectFit: "cover" }}
+                style={{ width: "100%", height: "400px", objectFit: "cover" }}
               />
             </div>
+            <div className="px-4">
+              <h1
+                style={{ fontWeight: "600", lineHeight: "38px" }}
+                className="fs-1 mb-3 text-dark blog-title text-center"
+              >
+                {blogPost.title}
+              </h1>
 
-            {/* Blog Title */}
-            <h1
-              style={{ fontWeight: "600", lineHeight: "38px" }}
-              className="fs-3 mb-3 text-dark blog-title"
-            >
-              {blogPost.title}
-            </h1>
+              {/* Blog Author and Date */}
+              <div className="mb-4 text-muted d-flex flex-column align-items-center">
+                <span className="fs-5 text-dark">By {blogPost.authorName}</span>
+                <span>
+                  Published on{" "}
+                  {new Date(blogPost.$createdAt).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
 
-            {/* Blog Author and Date */}
-            <div className="mb-4 text-muted d-flex gap-2">
-              <span className="fs-5 text-dark">{blogPost.authorName}</span>
-              <span>-</span>
-              <span>
-                {new Date(blogPost.$createdAt).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </span>
+              {/* Blog Description */}
+              <p className=" text-muted">{blogPost.description}</p>
             </div>
-
-            {/* Blog Description */}
-            <p className=" text-muted">{blogPost.description}</p>
+            {/* Blog Title */}
           </div>
         </div>
-      </section>
-      <section className="bg-solitude-blue position-relative sm-pb-20px">
+      </div>
+      <div className="bg-solitude-blue position-relative sm-pb-20px">
         <div className="container">
           <div className="row justify-content-center mb-1">
             <div className="col-lg-7 text-center">
@@ -81,54 +89,65 @@ const page = async ({ params }) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-12 px-0">
-              <ul
-                className="blog-classic blog-wrapper grid grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
-                data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
-              >
-                <li className="grid-sizer" />
-                {/* start blog item */}
-                {blogPosts.map((blog) => (
-                  <li key={blog.$id} className="grid-item">
-                    <div className="card shadow-sm border-0 rounded-3">
-                      <a href={`${blog.$id}`} className="">
-                        <img
-                          src={blog.thumbnail || "placeholder-image.webp"}
-                          alt="image"
-                          className="card-img-top rounded-top"
-                        />
-                      </a>
-                      <div className="card-body">
-                        <div className="d-flex gap-2 align-items-center fs-6 text-black-50">
-                          <span className="fs-5 text-black">
-                            {" "}
-                            {blog.authorName}
-                          </span>
-                          <span>-</span>
-                          <span className="">
-                            {new Date(blog.$createdAt).toLocaleDateString(
-                              "en-GB",
-                              {
-                                day: "2-digit",
-                                month: "short",
-                                year: "numeric",
-                              }
-                            )}
-                          </span>
+            <div className="container px-0">
+              <div className="row">
+                <div className="col-11 m-auto ">
+                  <div
+                    className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+                    data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+                  >
+                    {/* <div className="grid-sizer" /> */}
+                    {/* start blog item */}
+                    {RecentBlogs &&
+                      RecentBlogs.map((blog) => (
+                        <div key={blog.$id} className="col d-flex ">
+                          <div className="card shadow-sm  rounded-3 w-100 d-flex flex-column border">
+                            <a href={`${blog.$id}`} className="">
+                              <img
+                                src={
+                                  blog.thumbnail || "/placeholder-image.webp"
+                                }
+                                alt="image"
+                                className="card-img-top rounded-top"
+                                style={{ height: "250px", objectFit: "cover" }}
+                              />
+                            </a>
+                            <div className="card-body d-flex flex-column flex-grow-1">
+                              <div className="d-flex gap-2 align-items-center fs-6 text-black-50">
+                                <span className="fs-5 text-black">
+                                  {" "}
+                                  {blog.authorName}
+                                </span>
+                                <span>-</span>
+                                <span className="">
+                                  {new Date(blog.$createdAt).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                      day: "2-digit",
+                                      month: "short",
+                                      year: "numeric",
+                                    }
+                                  )}
+                                </span>
+                              </div>
+                              <p className="card-text fs-4 fw-semibold mt-2 text-black">
+                                <a
+                                  href={`${blog.$id}`}
+                                  className="text-black"
+                                >
+                                  {blog.title}
+                                </a>
+                              </p>
+                              <a href={`/${blog.$id}`} className="">
+                                Read More ...
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <p className="card-text fs-4 fw-semibold mt-2 text-black">
-                          <a href={`${blog.$id}`} className="text-black">
-                            {blog.title}
-                          </a>
-                        </p>
-                        <a href={`${blog.$id}`} className="">
-                          Read More...
-                        </a>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                      ))}
+                  </div>
+                </div>
+              </div>
             </div>
             <a
               href="/blogs"
@@ -145,8 +164,8 @@ const page = async ({ params }) => {
             </a>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
