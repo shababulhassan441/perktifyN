@@ -8,7 +8,7 @@ const HeroSection = ({ heroData }) => {
   return (
     <section
       id="herocta"
-      className="cover-background full-screen ipad-top-space-margin position-relative md-h-auto"
+      className="cover-background full-screen ipad-top-space-margin position-relative md-h-auto "
       //   style={{ backgroundImage: 'url("hero-bg.jpg")' }}
     >
       <div className="overlay"></div>
@@ -21,18 +21,18 @@ const HeroSection = ({ heroData }) => {
       <div className="mx-w-large mx-auto h-100 paddingH">
         <div className="d-flex flex-column gap-4 marginTopSmall sm-marginTop align-items-center justify-content-center pt-9 h-100">
           <div className="col-xl-10 col-lg-10 col-md-10 text-white position-relative text-center text-lg-start d-flex flex-column align-items-center">
-            <div className="fs-70 lg-fs-60 sm-fs-60 xs-fs-50 fw-600 mb-20px text-center ls-minus-4px overflow-hidden">
+            <div className="sm-fs-60 xs-fs-50 lg-fs-60 xl-fs-60 xxl-fs-60  fw-600 text-center ">
               <div
                 className="d-inline-block"
                 data-anime='{ "translateY": [100, 0], "easing": "easeOutCubic", "duration": 900 }'
               >
                 <div
-                  className="highlight-separator"
+                  className="highlight-separator "
                   data-shadow-animation="true"
                   data-animation-delay={1500}
                   // style={{color:"black"}}
                 >
-                  {title || ""}
+                  <h1>{title || ""}</h1>
                   {/* <span>
                     <img src="highlight-separator.svg" alt="" />
                   </span> */}

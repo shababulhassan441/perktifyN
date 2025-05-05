@@ -10,7 +10,7 @@ const Legals = async () => {
   const { coverImage, Heading, subHeading } = filteredData;
 
   return (
-    <section className="" style={{overflowX:"hidden"}}>
+    <section className="pt-0" style={{overflowX:"hidden"}}>
       <div
         className="w-100 padding-Y135 position-relative"
         style={{

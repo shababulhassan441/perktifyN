@@ -26,7 +26,7 @@ const page = async ({ params }) => {
   }
 
   return (
-    <section className="bg-solitude-blue d-flex flex-column blogDetailPagePaddingTop">
+    <section className="bg-solitude-blue d-flex flex-column blogDetailPagePaddingTop overflowX">
       <div className="container my-3  ">
         <div
           className="row justify-content-center bg-white shadow-sm mx-auto rounded-3"
@@ -102,7 +102,7 @@ const page = async ({ params }) => {
                       RecentBlogs.map((blog) => (
                         <div key={blog.$id} className="col d-flex ">
                           <div className="card shadow-sm  rounded-3 w-100 d-flex flex-column border">
-                            <a href={`${blog.$id}`} className="">
+                            <a href={`/blogs/${blog.$id}`} className="">
                               <img
                                 src={
                                   blog.thumbnail || "/placeholder-image.webp"
@@ -138,7 +138,7 @@ const page = async ({ params }) => {
                                   {blog.title}
                                 </a>
                               </p>
-                              <a href={`/${blog.$id}`} className="">
+                              <a href={`/blogs/${blog.$id}`} className="">
                                 Read More ...
                               </a>
                             </div>

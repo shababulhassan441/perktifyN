@@ -12,7 +12,7 @@ const page = async ({ params }) => {
     filteredData;
 
   return (
-    <section className="mb-2">
+    <section className="mb-2 overflowX pt-0">
       {" "}
       <div
         className="w-100 padding-Y135 position-relative"
